@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moien34 | Resume</title>
+    <style>
+        /* --- Reset & Globals --- */
+        * {
+            box-sizing: border-box; /* بسیار مهم برای جلوگیری از بهم ریختگی */
+        }
+
+        @font-face {
+            font-family: 'ITC';
+            src: url("Fonts/ITCAvantGardeStd.ttf");
+        }
+        @font-face {
+            font-family: 'Atari';
+            src: url(Fonts/AtariClassic.ttf);
+        }
+        @font-face {
+            font-family: 'Terminal';
+            src: url(Fonts/UbuntuMono.ttf);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: lightgray;
+            margin: 0;
+            padding: 20px; /* اضافه کردن پدینگ کلی */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- Main Card Layout --- */
+        .resume-card {
+            background-color: whitesmoke;
+            color: #fff; 
+            margin: 0;
+            width: min(100%, 900px);
+            border-radius: 12px; 
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: row; 
+            align-items: stretch;
+        }
+
+        /* --- Left Section (Dark) --- */
+        .left-section {
+            width: 32%;
+            flex: 0 0 32%;
+            padding: 40px 30px;
+            background-color: #222; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 0;
+        }
+
+        .photo {
+            width: 140px;
+            height: 140px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            align-self: center;
+            border: 4px solid #333; /* استایل اضافه برای زیبایی عکس */
+            object-fit: cover;
+        }
+
+        .name-title {
+            align-self: center;
+            text-align: center;
+            font-family: 'ITC', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .left-section h1 {
+            font-size: 28px;
+            margin: 5px 0;
+            font-weight: 700;
+        }
+
+        .left-section h2 {
+            font-size: 13px;
+            margin: 5px 0;
+            color: #aaa; 
+            letter-spacing: 1px;
+        }
+
+        .left-section h3 {
+            font-size: 15px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-family: 'Segoe UI', sans-serif;
+            color: rgb(189, 240, 240);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        /* استایل جدید برای لیست‌ها در سایدبار */
+        .left-section ul {
+            list-style-type: none; /* حذف بولت‌های پیش‌فرض */
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .left-section li {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            line-height: 1.4;
+        }
+
+        /* استایل برای اطلاعات تماس */
+        .contact p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #ddd;
+        }
+
+        .customIcons {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            opacity: 0.8;
+        }
+
+        /* --- Right Section (Light) --- */
+        .right-section {
+            width: 68%;
+            flex: 1 1 auto;
+            padding: 50px;
+            background-color: whitesmoke; 
+            display: flex;
+            flex-direction: column;
+            color: #333;
+            min-width: 0;
+        }
+
+        .right-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-family: 'ITC', sans-serif;
+            color: darkcyan;
+            border-bottom: 2px solid darkcyan;
+            padding-bottom: 8px;
+            margin-top: 35px; 
+        }
+
+        .right-section h3:first-of-type {
+            margin-top: 0; 
+        }
+
+        .profile p {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #444;
+            text-align: justify;
+        }
+
+        .job, .degree {
+            margin-bottom: 30px;
+        }
+
+        .right-section h4 {
+            font-size: 17px;
+            margin: 0 0 5px 0;
+            color: #222;
+            font-weight: bold;
+            font-family: 'ITC', sans-serif;
+        }
+
+        .job p, .degree p {
+            font-size: 14px;
+            color: #777;
+            margin: 2px 0 8px 0;
+        }
+
+        .right-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .right-section li {
+            font-size: 14px;
+            margin: 6px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .degree p:last-of-type {
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* --- Social Buttons --- */
+        .social-buttons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            margin-top: auto; 
+            padding-top: 40px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 24px;
+            background-color: darkcyan;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: 'ITC', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-btn:hover {
+            background-color: #006666; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-btn img {
+            width: 18px;
+            height: 18px;
+            filter: brightness(0) invert(1); 
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN (MOBILE OPTIMIZATION)
+           ========================================= */
+        @media (max-width: 900px), (max-height: 520px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+            }
+
+            .resume-card {
+                flex-direction: column;
+                width: 100%;
+                max-width: 100%;
+                margin-top: 10px;
+            }
+
+            .left-section {
+                width: 100%;
+                flex: none;
+                align-items: center;
+                text-align: center;
+                padding: 40px 20px;
+            }
+
+            .left-section h3 {
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+                width: 100%;
+                margin-top: 25px;
+            }
+
+            .left-section .skills ul,
+            .left-section .hobbies ul,
+            .left-section .languages ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .left-section li {
+                background-color: rgba(255,255,255,0.1);
+                padding: 5px 12px;
+                border-radius: 15px;
+                font-size: 12px;
+                margin: 0;
+                white-space: nowrap;
+            }
+
+            .contact {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact p {
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .right-section {
+                width: 100%;
+                flex: none;
+                padding: 30px 25px;
+            }
+
+            .profile p {
+                text-align: left;
+            }
+
+            .social-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+            .social-btn {
+                flex: 1;
+                min-width: 120px;
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .photo {
+                width: 110px;
+                height: 110px;
+            }
+            .left-section h1 {
+                font-size: 24px;
+            }
+            .social-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-card">
+        <div class="left-section">
+            <img src="pictures/MyProfilePicture.png" alt="Moien Talebi" class="photo">
+            <div class="name-title">
+                <h1>Moien 34</h1>
+                <h2>A Developer.</h2>
+            </div>
+
+            <div class="contact">
+                <h3>Contact</h3>
+                <p><img src="pictures/Phone.png" class="customIcons"> +98 930 34 34 148</p>
+                <p><img src="pictures/Email.png" class="customIcons"> moientalebi@outlook.com</p>
+                <p><img src="pictures/Telegram.png" class="customIcons"> @moien34</p>
+            </div>
+
+            <div class="skills">
+                <h3>Skills</h3>
+                <ul>
+                    <li>C++ / C#</li>
+                    <li>Java / Python</li>
+                    <li>Unreal Engine</li>
+                    <li>SQL / DB</li>
+                    <li>Algorithms</li>
+                    <li>3D Anim</li>
+                </ul>
+            </div>
+
+            <div class="languages">
+                <h3>Languages</h3>
+                <ul>
+                    <li>English (Proficient)</li>
+                    <li>Persian (Native)</li>
+                </ul>
+            </div>
+
+            <div class="hobbies">
+                <h3>Hobbies</h3>
+                <ul>
+                    <li>Music ♫</li>
+                    <li>Gaming</li>
+                    <li>Walking</li>
+                    <li>Walking</li>
+                    <li>Walking</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="profile">
+                <h3>About Me</h3>
+                <p>Software developer with experience in multiple programming languages including C++, Java, C#, and Python. Proficient in game development using Unreal Engine and skilled in algorithm design and SQL database management. Strong problem-solving skills with a passion for creating innovative solutions and continuous learning.</p>
+            </div>
+
+            <div class="work-experience">
+                <h3>Work Experience</h3>
+                
+                <div class="job">
+                    <h4>Unreal Engine Developer</h4>
+                    <p><strong>Behsazan Farda Group</strong> | Tehran, Iran | Feb 2025 - Present</p>
+                    <ul>
+                        <li>Developed interactive applications across different platforms and UXs.</li>
+                        <li>Made classical bonus games at Behsazan Farda Group to enhance overall user experience.</li>
+                        <li>Implemented efficient algorithms and optimized games to run smoothly on any platform.</li>
+                        <li>Collaborated with skilled professionals to deliver high-quality features.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="education">
+                <h3>Education</h3>
+                
+                <div class="degree">
+                    <h4>B.Sc. In Computer Engineering</h4>
+                    <p><strong>K. N. Toosi University of Technology</strong> | Sep 2022 - Present</p>
+                    <p>Relevant coursework: Advanced Programming, Architecture, Data Structures, Algorithms, Software Eng., DB Systems</p>
+                </div>
+
+                <div class="degree">
+                    <h4>High School Diploma</h4>
+                    <p><strong>Alborz Highschool</strong> | 2016 - 2022</p>
+                    <p>Focus on Mathematics and Computer Science</p>
+                </div>
+            </div>
+
+            <div class="social-buttons">
+                <a href="https://www.linkedin.com/in/moien-talebi-9755192b4/" target="_blank" class="social-btn">
+                    <img src="pictures/LinkedIn.png" alt="LI"> LinkedIn
+                </a>
+                <a href="https://github.com/MoienCE" target="_blank" class="social-btn">
+                    <img src="pictures/GitHub.png" alt="GH"> GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
